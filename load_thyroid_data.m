@@ -64,6 +64,10 @@ patient_IDs = xlsread('/Users/annielane/Documents/Fall2015/EC500Project/ThyroidD
 %% Clear temporary variables
 clearvars raw;
 
+%% Import the data
+[~, ~, Feature_Names] = xlsread('/Users/annielane/Documents/Fall2015/EC500Project/ThyroidData.xlsx','allpb_names');
+Feature_Names = Feature_Names(:,1);
+Feature_Names(cellfun(@(x) ~isempty(x) && isnumeric(x) && isnan(x),Feature_Names)) = {''};
 
 %% Save the result
-save('all_thyroid.mat','allbp_labels','allhyper_labels','allhypo_labels','allrep_labels','Thyroid_Features','patient_IDs');
+save('all_thyroid.mat','allbp_labels','allhyper_labels','allhypo_labels','allrep_labels','Thyroid_Features','patient_IDs','Feature_Names');
