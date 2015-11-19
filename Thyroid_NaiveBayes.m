@@ -13,7 +13,7 @@ load('all_thyroid.mat');
 % Select the true/false features
 TF_Feature_Inds = [3:17 19 21 23 25 27];
 num_TF_features = length(TF_Feature_Inds);
-TF_Names = FeatureNames(TF_Feature_Inds);
+TF_Names = Feature_Names(TF_Feature_Inds);
 TF_Features = Thyroid_Features(:,TF_Feature_Inds);
 
 % Fix the random seed (randstream)
@@ -27,8 +27,8 @@ numTest = num_samples - numTrain;
 
 X_train = TF_Features(randInd(1:numTrain), :);
 Y_train = allhypo_labels(randInd(1:numTrain), :);
-X_test = TF_Features(randInd((numTrain+1):n), :);
-Y_test = allhypo_labels(randInd((numTrain+1):n), :);
+X_test = TF_Features(randInd((numTrain+1):end), :);
+Y_test = allhypo_labels(randInd((numTrain+1):end), :);
 
 possible_labels = unique(allhypo_labels);
 num_classes = length(possible_labels);
