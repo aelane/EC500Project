@@ -37,3 +37,9 @@ FTI:				continuous.
 TBG measured:			f, t.
 TBG:				continuous.
 referral source:		WEST, STMW, SVHC, SVI, SVHD, other.
+
+Classes
+negative = Class 0	-- 2713 instances
+replacement_therapy = Class 1	-- 29 instances
+underreplacement = Class 2		-- 35 instances
+overreplacement = Class 3		-- 23 instances

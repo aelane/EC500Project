@@ -26,6 +26,34 @@ hypopituitary:			f, t.
 psych:				f, t.
 TSH measured:			f, t.
 TSH:				continuous.
+T3 measured:			f, t.;
+; Thyroid disease records supplied by the Garavan Institute and J. Ross
+; Quinlan, New South Wales Institute, Syndney, Australia.
+;
+; 1987.
+;
+
+hyperthyroid, T3 toxic, goitre, secondary toxic,
+negative.			|  classes
+
+age:				continuous.
+sex:				M, F.
+on thyroxine:			f, t.
+query on thyroxine:		f, t.
+on antithyroid medication:	f, t.
+sick:				f, t.
+pregnant:			f, t.
+thyroid surgery:		f, t.
+I131 treatment:			f, t.
+query hypothyroid:		f, t.
+query hyperthyroid:		f, t.
+lithium:			f, t.
+goitre:				f, t.
+tumor:				f, t.
+hypopituitary:			f, t.
+psych:				f, t.
+TSH measured:			f, t.
+TSH:				continuous.
 T3 measured:			f, t.
 T3:				continuous.
 TT4 measured:			f, t.
@@ -37,3 +65,36 @@ FTI:				continuous.
 TBG measured:			f, t.
 TBG:				continuous.
 referral source:		WEST, STMW, SVHC, SVI, SVHD, other.
+
+
+hyperthyroid, T3 toxic, goitre, secondary toxic,
+negative.	
+	
+Negative = 0
+Hyperthyroid = 1
+T3 Toxic = 2
+Goitre = 3
+Secondary = 4
+Toxic = 5
+
+T3:				continuous.
+TT4 measured:			f, t.
+TT4:				continuous.
+T4U measured:			f, t.
+T4U:				continuous.
+FTI measured:			f, t.
+FTI:				continuous.
+TBG measured:			f, t.
+TBG:				continuous.
+referral source:		WEST, STMW, SVHC, SVI, SVHD, other.
+
+
+hyperthyroid, T3 toxic, goitre, secondary toxic,
+negative.	
+	
+Negative = 0 	-- 2723 instances
+Hyperthyroid = 1	-- 62 instances
+T3 toxic = 2	-- 8 instances
+Goitre = 3		--- 7 instances
+Secondary = 4		-- 0 instances	
+Toxic = 5	-- 0 instances

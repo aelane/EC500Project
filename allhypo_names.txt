@@ -38,3 +38,11 @@ FTI:				continuous.
 TBG measured:			f, t.
 TBG:				continuous.
 referral source:		WEST, STMW, SVHC, SVI, SVHD, other.
+
+negative = 0		-- 2580 instances
+hypothyroid = 1		-- 0 instances
+primary hypothyroid = 2		-- 64 instances
+compensated hypothyroid = 3		-- 154 instances
+secondary hypothyroid = 4		-- 2 instances
+	
+
