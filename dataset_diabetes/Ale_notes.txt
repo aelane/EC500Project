@@ -1,0 +1,21 @@
+Changes Made to the CSV!
+
+Race are now by numbers:
+Caucasian - 1
+AfricanAmerian - 2
+Asian - 3
+Hispanic - 4
+Other - 5
+
+Gender:
+Female - 1
+Male - 2
+
+Age Ranges are now
+
+0-10: 1
+.
+.
+.
+.
+90-100: 10
