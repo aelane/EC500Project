@@ -5,7 +5,7 @@ Caucasian - 1
 AfricanAmerian - 2
 Asian - 3
 Hispanic - 4
-Other - 5
+Other/? - 5
 
 Gender:
 Female - 1
@@ -19,3 +19,9 @@ Age Ranges are now
 .
 .
 90-100: 10
+
+I’ve changed any NONE, NO to 0
+YES to 1
+Norm to 1
+>300 to 300
+>200 to 200

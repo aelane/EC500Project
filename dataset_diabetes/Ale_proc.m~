@@ -1,0 +1,10 @@
+%Time to process that data
+
+col = 20;
+for i = 1:length(T)
+    for j = 22:
+        if strcmp(T(i,j),'None')
+            T{i,j} = 0;
+        end
+    end  
+end
