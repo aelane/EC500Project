@@ -1,10 +1,22 @@
 %Time to process that data
 
-col = 20;
+col = 22;
 for i = 1:length(T)
-    for j = 22:
-        if strcmp(T(i,j),'None')
-            T{i,j} = 0;
-        end
-    end  
+    for j = 22:37
+    
+    if ischar(T{i,j})
+        fprintf('%s\n',T{i,j});
+        
+%           if strcmp(T{i,j},'Up')
+%               T{i,j} = 2;
+%           
+%           elseif strcmp(T{i,j},'Down')
+%               T{i,j} = -2;
+%     
+%           elseif strcmp(T{i,j},'Steady')
+%               T{i,j} = 1;
+%           end
+        
+    end
+    end
 end
