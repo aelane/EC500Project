@@ -64,3 +64,24 @@ decreased binding protein = Class 2 -- 9 instances
 
 
 n = 2800 (number of samples)
+
+
+
+In test set:
+n = 972
+Female = 650
+Male = 282
+
+WEST (1) = 0
+STMW (2) = 21
+SVHC (3) = 111
+SVI (4) = 263
+SVHD (5) = 31
+other (6) = 569
+
+NaN = 1508 instances
+
+
+negative = Class 0 -- 942 instances
+increased Binding protein = Class 1	-- 25 instances
+decreased binding protein = Class 2 -- 5 instances
