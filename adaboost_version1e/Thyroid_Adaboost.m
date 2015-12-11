@@ -28,6 +28,32 @@ num_train_pos = sum(train_hypo_binary == 1); %220 examples of 2800
 
  [model, ada_predict] = train_adaboost(train_thyroid_features, train_hypo_binary, 50);
 
+%% Get results for 5 trainers
+num_T = 5;
+
+predict_sum = zeros(size(train_thyroid_features,1),1);
+
+% Limit feature_matrix to training set boundaries
+if(length(model)>1);
+    minb=model(1).boundary(1:end/2);
+    maxb=model(1).boundary(end/2+1:end);
+    train_thyroid_features=bsxfun(@min,train_thyroid_features,maxb);
+    train_thyroid_features=bsxfun(@max,train_thyroid_features,minb);
+end
+
+
+% Add all results of the single weak classifiers weighted by their alpha
+for t=1:num_T;
+    predict_sum = predict_sum + model(t).alpha * ApplyClassThreshold(model(t), train_thyroid_features);
+end
+
+% For each example, if predict_sum(i) is less than zero, then predict class -1
+% If predict_sum(i) is greater than zero, then predict class +1
+H_predict_labels =sign(predict_sum);
+ 
+confusionmat(train_hypo_binary, H_predict_labels)
+
+ 
  %% Plot the error
  
  fig3 = figure(3);
@@ -53,6 +79,12 @@ num_train_pos = sum(train_hypo_binary == 1); %220 examples of 2800
  title('Classification error versus number of weak classifiers');
  % Add axes titles
  
- confusionmat(ada_predict, train_hypo_binary);
+ confusionmat(train_hypo_binary, ada_predict)
  
+%% Apply Decision tree
 
+thyroid_tree = fitctree(train_thyroid_features, train_hypo_binary);
+tree_predict = predict(thyroid_tree, train_thyroid_features);
+
+confusionmat(train_hypo_binary, tree_predict)
+view(thyroid_tree,'Mode','graph')

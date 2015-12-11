@@ -31,7 +31,7 @@ function [model, final_predict] = train_adaboost(feature_matrix, class_labels, n
 %       feature - the feature used to make the decision
 %       threshold - the threshold value on the feature to split the data
 %       direction - which side of the threshold is which class
-%       boundary -
+%       boundary - minimum and maximum
 %       error - the error with this classifier
 %       poserror - the percent of actually positive examples misclassified
 %       negerror - the percent of actually negative examples misclassified
