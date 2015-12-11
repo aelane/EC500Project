@@ -2,8 +2,6 @@
 %
 % Type "edit adaboost.m" to see the code
 
-
-%% Generate Data
 % Make training data of two classes "red" and "blue"
  % with 2 features for each sample (the position  x and y).
   angle=rand(200,1)*2*pi; l=rand(200,1)*40+30; 
@@ -13,16 +11,17 @@
 
  % All the training data
   datafeatures=[blue;red];
-  dataclass(1:200)=-1; 
-  dataclass(201:400)=1;
+  dataclass(1:200)=-1; dataclass(201:400)=1;
 
  % Show the data
   figure, subplot(2,2,1), hold on; axis equal;
   plot(blue(:,1),blue(:,2),'b.'); plot(red(:,1),red(:,2),'r.');
   title('Training Data');
   
+ 
+ 
  % Use Adaboost to make a classifier
- model = train_adaboost(datafeatures,dataclass',50);
+ [model, classestimate] = train_adaboost(datafeatures,dataclass',50);
 
  % Training results
  % Show results
