@@ -38,7 +38,7 @@ COL: 45
 Status return hospital visit
 NO: 1
 <30: 2
->30: 3
+>30: 1
 
 
 

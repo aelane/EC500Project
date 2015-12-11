@@ -47,6 +47,6 @@ figure
 tb = tabulate(Y_Label);
 bar(tb(:,3))
 title('Readmission Rates')
-set(gca,'XTickLabel',{'Not Readmitted', 'Within 30 days', 'After 30 days'})
+set(gca,'XTickLabel',{'Not Readmitted', 'Within 30 days'})
 ylabel('Percent')
 
