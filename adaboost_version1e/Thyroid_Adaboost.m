@@ -110,11 +110,10 @@ dt_CCR = trace(dt_conmat)/num_train
  %Bellow we attempt an SVM classifier, default with a linear kernel.
 svmmodel = fitcsvm(train_thyroid_features, train_hypo_binary);
 
-
+% Test with SVM
 svmpredict_train = predict(svmmodel, train_thyroid_features);
 svm_conmat_train = confusionmat(train_hypo_binary,svmpredict_train)
 CCR_svm_train = trace(svm_conmat_train)/num_train
-
 
 % Test set results
 svmpredict_test = predict(svmmodel, test_thyroid_features);
@@ -130,8 +129,6 @@ CCR_svm_test = trace(svm_conmat_test)/num_test
  [adaX_5,adaY_5,adaT_5,adaAUC_5] = perfcurve(train_hypo_binary,ada_predict_5,1);
  [dtX,dtY,dtT,dtAUC] = perfcurve(train_hypo_binary,tree_predict,1);
  [svmX,svmY,svmT,svmAUC] = perfcurve(test_hypo_binary,svmpredict_test,1);
- 
- 
  
  fig2 = figure(2);
  clf(2);
