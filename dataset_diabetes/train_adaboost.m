@@ -1,4 +1,4 @@
-function model= train_adaboost(feature_matrix, class_labels, num_t)
+function [model, final_predict] = train_adaboost(feature_matrix, class_labels, num_t)
 % Modified from Copyright (c) 2010, Dirk-Jan Kroon. All rights reserved.
 % Function is written by D.Kroon University of Twente (August 2010)
 % See license.txt
@@ -38,8 +38,8 @@ function model= train_adaboost(feature_matrix, class_labels, num_t)
 
 %% Initialize Variables
 
-% The output is a struct
-model=struct;
+% Initialize output as a struct
+model = struct;
 
 % Number of examples
 num_examples = length(class_labels);
@@ -58,9 +58,9 @@ sample_weight=ones(num_examples,1)/num_examples;
 predict_sum = zeros(num_examples, 1); %Previously estimateclassnum
 
 % Calculate the range (min and max) of each feature in the data set
-min_feature_vals = min(feature_matrix);
-max_feature_vals = max(feature_matrix);
-%boundary=[min(datafeatures) max(datafeatures,[],1)];
+% min_feature_vals = min(feature_matrix);
+% max_feature_vals = max(feature_matrix);
+boundary=[min(feature_matrix, [], 1) max(feature_matrix,[],1)];
 %% Do all model training iterations
 for t=1:num_t
     % Find the best threshold to separate the data in two classes
@@ -76,8 +76,8 @@ for t=1:num_t
     model(t).feature=weak_classifier.feature;
     model(t).threshold=weak_classifier.threshold;
     model(t).direction=weak_classifier.direction;
-    %model(t).boundary = boundary;
-    % We update D so that wrongly classified samples will have more weight
+    model(t).boundary = boundary;
+    % Update the weights for each sample so wrongly classified samples will have more weight
     % in next iteration
     sample_weight = sample_weight .* exp(-alpha * class_labels .* weak_predict);
     sample_weight = sample_weight./sum(sample_weight); %Normalize the weights
@@ -96,6 +96,9 @@ for t=1:num_t
     if(model(t).error==0) 
         break; 
     end
+    
+    final_predict = curr_predict_label;
+    
 end
 
 

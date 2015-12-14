@@ -35,8 +35,17 @@ function H_predict_labels = test_adaboost(feature_matrix, model)
 % Output:
 %   H_predict_labels: the predicted classification of all test examples
 
-%Initialize predict_sum vector 
+%Initialize predict_sum vector
 predict_sum = zeros(size(feature_matrix,1),1);
+
+% Limit feature_matrix to training set boundaries
+if(length(model)>1);
+    minb=model(1).boundary(1:end/2);
+    maxb=model(1).boundary(end/2+1:end);
+    feature_matrix=bsxfun(@min,feature_matrix,maxb);
+    feature_matrix=bsxfun(@max,feature_matrix,minb);
+end
+
 
 % Add all results of the single weak classifiers weighted by their alpha
 for t=1:length(model);
@@ -44,7 +53,7 @@ for t=1:length(model);
 end
 
 % For each example, if predict_sum(i) is less than zero, then predict class -1
-% If predict_sum(i) is greater than zero, then predict class +1 
+% If predict_sum(i) is greater than zero, then predict class +1
 H_predict_labels =sign(predict_sum);
 
 

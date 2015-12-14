@@ -2,9 +2,9 @@
 % the data set that we're working with. We'll be looking at gender, race, 
 % age, hospital readmission rates, Time in the hospital
 
-clear
+%clear
 close all
-load('Final_Data.mat')
+%load('Final_Data.mat')
 
 %% Here we look at gender: second column.
 figure
