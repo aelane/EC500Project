@@ -37,9 +37,3 @@ To run the experiment all one needs to do is open MatLab and run the DiabetesTes
 
 
 
-
-
-
-
-
-

@@ -1,0 +1,71 @@
+;
+; Thyroid disease records supplied by the Garavan Institute and J. Ross
+; Quinlan, New South Wales Institute, Syndney, Australia.
+;
+; 1987.
+;
+
+***** Class names *****
+Class names:
+hypothyroid, primary hypothyroid, compensated hypothyroid,
+secondary hypothyroid,
+negative.			
+**********************
+
+**** Feature Names and Original Data Type *****
+age:				continuous.
+sex:				M, F.
+on thyroxine:			f, t.
+query on thyroxine:		f, t.
+on antithyroid medication:	f, t.
+sick:				f, t.
+pregnant:			f, t.
+thyroid surgery:		f, t.
+I131 treatment:			f, t.
+query hypothyroid:		f, t.
+query hyperthyroid:		f, t.
+lithium:			f, t.
+goitre:				f, t.
+tumor:				f, t.
+hypopituitary:			f, t.
+psych:				f, t.
+TSH measured:			f, t.
+TSH:				continuous.
+T3 measured:			f, t.
+T3:				continuous.
+TT4 measured:			f, t.
+TT4:				continuous.
+T4U measured:			f, t.
+T4U:				continuous.
+FTI measured:			f, t.
+FTI:				continuous.
+TBG measured:			f, t.		—- All 0, DELETED
+TBG:				continuous.	—- All ?, DELETED
+referral source:		WEST, STMW, SVHC, SVI, SVHD, other.
+
+*****Initial Class Mapping *****
+negative = 0				-- 2580 instances
+hypothyroid = 1				-- 0 instances
+primary hypothyroid = 2			-- 64 instances
+compensated hypothyroid = 3		-- 154 instances
+secondary hypothyroid = 4		-- 2 instances
+
+***** Feature Value Mappings ****
+Replace question marks (unknown values) with -1
+Replace t for true with 1
+Replace f for false with 0 
+Replace Genders with F = 1 and M = 2 
+
+*** Basic Statistics ***
+TRAINING SET:
+n = 2800
+Female = 1830 
+Male =  860
+
+
+TEST SET:
+n = 972
+Female = 650
+Male = 282
+	
+
