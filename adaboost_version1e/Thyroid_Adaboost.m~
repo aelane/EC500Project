@@ -115,6 +115,4 @@ view(thyroid_tree,'Mode','graph')
  ylabel('True Positive Rate');
  set(gca,'FontSize',20);
  
- %% Run SVM
- 
  

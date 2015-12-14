@@ -1,4 +1,4 @@
-function [model, final_predict] = train_adaboost(feature_matrix, class_labels, num_t)
+function [model, final_predict] = train_adaboost(feature_matrix, class_labels, num_T)
 % Modified from Copyright (c) 2010, Dirk-Jan Kroon. All rights reserved.
 % Function is written by D.Kroon University of Twente (August 2010)
 % See license.txt
@@ -62,7 +62,7 @@ predict_sum = zeros(num_examples, 1); %Previously estimateclassnum
 % max_feature_vals = max(feature_matrix);
 boundary=[min(feature_matrix, [], 1) max(feature_matrix,[],1)];
 %% Do all model training iterations
-for t=1:num_t
+for t=1:num_T
     % Find the best threshold to separate the data in two classes
     [weak_predict, error, weak_classifier] = WeightedThresholdClassifier(feature_matrix, class_labels, sample_weight);
     
@@ -157,7 +157,3 @@ h.feature = dim;
 h.threshold = thr; 
 h.direction = dir;
 estimateclass=ApplyClassThreshold(h,datafeatures);
-
-
-
-
