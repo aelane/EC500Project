@@ -28,7 +28,8 @@ num_train_pos = sum(train_hypo_binary == 1); %220 examples of 2800
 
 [model, ada_predict] = train_adaboost(train_thyroid_features, train_hypo_binary, 50);
 
-confusionmat(train_hypo_binary, ada_predict)
+ada_conmat = confusionmat(train_hypo_binary, ada_predict)
+ada_CCR = trace(adaconmat)/num_train
 
 %% Get results for 5 trainers
 num_T = 5;
@@ -52,7 +53,8 @@ end
 % If predict_sum(i) is greater than zero, then predict class +1
 ada_predict_5 =sign(predict_sum);
  
-confusionmat(train_hypo_binary, ada_predict_5)
+ada_5_conmat = confusionmat(train_hypo_binary, ada_predict_5);
+ada_5_CCR = trace(ada_5_conmat)/num_train
 
  
  %% Plot the error
@@ -81,10 +83,8 @@ title('Hypothyroid Classification Error as a function of number of Weak Classifi
 xlabel('Number of Weak Classifiers');
 ylabel('Percent Classification Error');
 set(gca,'FontSize',20)
- 
- 
- confusionmat(train_hypo_binary, ada_predict)
- 
+
+
 %% Apply Decision tree
 
 thyroid_tree = fitctree(train_thyroid_features, train_hypo_binary);
@@ -114,5 +114,7 @@ view(thyroid_tree,'Mode','graph')
  xlabel('False Positive Rate');
  ylabel('True Positive Rate');
  set(gca,'FontSize',20);
+ 
+ %% Run SVM
  
  
