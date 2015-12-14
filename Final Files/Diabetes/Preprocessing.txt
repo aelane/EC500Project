@@ -1,0 +1,50 @@
+Changes Made to the CSV!
+
+Race are now by numbers:
+Caucasian - 1
+AfricanAmerian - 2
+Asian - 3
+Hispanic - 4
+Other/? - 5
+
+Gender:
+Female - 1
+Male - 2
+
+Age Ranges are now
+
+0-10: 1
+.
+.
+.
+.
+90-100: 10
+
+I’ve changed any NONE, NO to 0
+YES to 1
+Norm to 1
+>300 to 300
+>200 to 200
+
+COL: 20 - 44
+empty: 0
+Up: 2
+Down: -2
+steady:-1
+
+Special note: column 40 and 41 only has 1 and , respectively, non 0 value. Consider removal?
+
+COL: 45
+Status return hospital visit
+NO: -1
+<30: 1
+>30: -1
+
+
+
+
+
+
+
+
+

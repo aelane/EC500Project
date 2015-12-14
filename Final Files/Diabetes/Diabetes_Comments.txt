@@ -1,0 +1,26 @@
+Diabetes Data
+
+Previous group applied Multivariable Logistic Regression (http://www.hindawi.com/journals/bmri/2014/781670/)
+70,000 inpatient diabetes encounters have sufficient detail for analysis
+Management of hyperglycemia in hospitalized patients has bearing on outcome
+10 years of clinical care
+130 hospitals
+	Midwest = 18 hospitals
+	Northeast = 58 hospitals
+	South = 28 hospitals
+	West = 16 hospitals
+	
+55 attributes extracted of the original 117 features
+Criteria for data: 
+	Inpatient encounter (hospital admission)
+	"Diabetic" encounter (any type of diabetes was given as a diagnosis) -- can be a prexisting condition
+	Length of stay ranges from 1 day to 14 days
+	Lab tests performed
+	Medication given
+	
+101,766 encounters fulfull above criteria
+Types of features: demographics, diagnoses, diabetic medications, number of visits in year preceding, and payer info
+
+Removed Weight, Payer Code and Medical Specialty fields from the dataset -- too sparse
+
+
