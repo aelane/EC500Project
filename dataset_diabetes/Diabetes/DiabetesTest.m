@@ -41,9 +41,9 @@ ylabel('Percent')
 
 %% Plot precision indexes
 
-ada_pre = 100*adaconf(2,2)/sum(adaconf(:,2));
-tree_pre = 100*treeconf(2,2)/sum(treeconf(:,2));
-svm_pre = 100*svmconf(2,2)/sum(svmconf(:,2));
+ada_pre = 100*adaconf(2,2)/sum(adaconf(:,2))
+tree_pre = 100*treeconf(2,2)/sum(treeconf(:,2))
+svm_pre = 100*svmconf(2,2)/sum(svmconf(:,2))
 
 figure
 bar([ada_pre, tree_pre, svm_pre])
