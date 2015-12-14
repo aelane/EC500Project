@@ -8,13 +8,11 @@
 % Use Hypothyroid data!
 
 %% Load and do final processing on data
-%clear;
-%clc;
+clear;
+clc;
 
 load('Hypo_Thyroid.mat');
 num_train = length(train_hypo_labels);
-
-%train_thyroid_features(2,:
 
 % Map the training labels using following system
 % -1 is negative (class 0)
@@ -26,12 +24,26 @@ train_hypo_binary(train_hypo_labels == 0) = -1;
 
 num_train_pos = sum(train_hypo_binary == 1); %220 examples of 2800
 
+% For Test Data
+load('Test_Hypo_Thyroid.mat');
+num_test = length(test_hypo_labels);
+
+% Map the training labels using binary system above
+
+test_hypo_binary = zeros(num_test, 1);
+test_hypo_binary(test_hypo_labels ~= 0) = 1;
+test_hypo_binary(test_hypo_labels == 0) = -1;
+
+num_test_pos = sum(test_hypo_binary == 1); % 71 examples of 972
+
+%% Apply AdaBoost
+
 [model, ada_predict] = train_adaboost(train_thyroid_features, train_hypo_binary, 50);
 
 ada_conmat = confusionmat(train_hypo_binary, ada_predict)
 ada_CCR = trace(ada_conmat)/num_train
 
-%% Get results for 5 trainers
+%% Get results for 5 weak learners from AdaBoost
 num_T = 5;
 
 predict_sum = zeros(size(train_thyroid_features,1),1);
@@ -92,17 +104,33 @@ tree_predict = predict(thyroid_tree, train_thyroid_features);
 dt_conmat = confusionmat(train_hypo_binary, tree_predict)
 dt_CCR = trace(dt_conmat)/num_train
 
-
 %view(thyroid_tree,'Mode','graph')
+
+ %% Run SVM
+ %Bellow we attempt an SVM classifier, default with a linear kernel.
+svmmodel = fitcsvm(train_thyroid_features, train_hypo_binary);
+
+
+svmpredict_train = predict(svmmodel, train_thyroid_features);
+svm_conmat_train = confusionmat(train_hypo_binary,svmpredict_train)
+CCR_svm_train = trace(svm_conmat_train)/num_train
+
+
+% Test set results
+svmpredict_test = predict(svmmodel, test_thyroid_features);
+svm_conmat_test = confusionmat(test_hypo_binary,svmpredict_test)
+CCR_svm_test = trace(svm_conmat_test)/num_test
+
 
 
 %% Plot the ROCs
 
+%Calculate the AUC and Plot
  [adaX,adaY,adaT,adaAUC] = perfcurve(train_hypo_binary,ada_predict,1);
- 
  [adaX_5,adaY_5,adaT_5,adaAUC_5] = perfcurve(train_hypo_binary,ada_predict_5,1);
- 
  [dtX,dtY,dtT,dtAUC] = perfcurve(train_hypo_binary,tree_predict,1);
+ [svmX,svmY,svmT,svmAUC] = perfcurve(test_hypo_binary,svmpredict_test,1);
+ 
  
  
  fig2 = figure(2);
@@ -111,12 +139,12 @@ dt_CCR = trace(dt_conmat)/num_train
  hold on;
  plot(adaX_5, adaY_5,':','LineWidth',3);
  plot(dtX,dtY,'-.','LineWidth',3);
- legend('AdaBoost T = 50','AdaBoost T = 5', 'Decision Tree','Location','Southeast');
+ plot(svmX,svmY,':','LineWidth',3);
+ legend('AdaBoost T = 50','AdaBoost T = 5', 'Decision Tree','Linear SVM','Location','Southeast');
  title('Receiver Operating Characteristic for Thyroid Data set');
  xlabel('False Positive Rate');
  ylabel('True Positive Rate');
  set(gca,'FontSize',20);
  
- %% Run SVM
- 
+AUCs = [adaAUC, adaAUC_5, dtAUC, svmAUC]
  
